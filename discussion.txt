@@ -1,0 +1,18 @@
+1. What compromises did you make due to time constraints?
+
+
+2. What would you do differently if this software was meant for production use?
+
+
+3. Propose how you might implement authentication, such that only authorized users may hit these endpoints.
+
+
+4. How much time did you spend on this exercise?
+
+
+5. Please include any other comments about your implementation.
+
+
+6. Please include any general feedback you have about the exercise.
+
+
