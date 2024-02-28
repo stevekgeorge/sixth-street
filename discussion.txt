@@ -1,18 +1,47 @@
-1. What compromises did you make due to time constraints?
+https://github.com/stevekgeorge/sixth-street
 
+RUNNING LOCALLY
+
+Install Dependencies:
+    pip install -r requirements.txt
+
+Start the Flask Server:
+    python3 server.py
+
+Interact with the API:
+    Open another terminal terminal and run the following commands:
+        To perform a symbol lookup:
+        curl -X GET "http://127.0.0.1:5000/lookup?symbol=msft&date=2024-02-27"
+
+        To retrieve the minimum price:
+        curl -X GET "http://127.0.0.1:5000/min?symbol=msft&n=34"
+
+        To retrieve the maximum price:
+        curl -X GET "http://127.0.0.1:5000/max?symbol=msft&n=15"
+
+For additional testing, I created a test suite that can be run by:
+    python3 tests.py
+
+Shutdown the Flask Server:
+    Press Ctrl + C in the terminal where it's running
+
+
+DISCUSSION
+
+1. What compromises did you make due to time constraints?
+    I used a less efficient approach when dealing with missing data not stored in the cache. Instead of fetching only the necessary missing data to minimize requests, I retrieved all data.
 
 2. What would you do differently if this software was meant for production use?
-
+    For production, I'd implement a distributed caching system to optimize performance. Additionally, I'd refine the server's logic to efficiently manage a higher volume of incoming requests.
 
 3. Propose how you might implement authentication, such that only authorized users may hit these endpoints.
-
+    I would implement an API key system. This system would involve generating unique keys for authorized users and storing them securely in a database. When a user attempts to access the endpoints, their API key would be verified against the database of authorized users, allowing access only to those with valid credentials.
 
 4. How much time did you spend on this exercise?
-
+    It took 1.5 hours to write the code, test it, and debug it. I spent another 30 minutes on documentation and creating this text file.
 
 5. Please include any other comments about your implementation.
-
+    The Flask application in server.py serves as the backend API for accessing stock data. It uses the AlphaVantageAPI class from api.py to retrieve time series data. The Cache class from cache.py is used for caching API responses to improve performance. When the server is started, it listens for HTTP requests on specified endpoints (/lookup, /min, /max) and delegates the requests to corresponding methods in the AlphaVantageAPI class. These methods retrieve data from the API or cache and return the results as JSON responses. The tests.py file contains unit tests to verify the functionality of the API endpoints by sending mock HTTP requests and validating the responses.
 
 6. Please include any general feedback you have about the exercise.
-
-
+    It was fun! I'm always happy to work with APIs.
